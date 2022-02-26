@@ -1,1 +1,1 @@
-web:gunicorn search_filter.wsgi
+web: gunicorn search_filter.wsgi
