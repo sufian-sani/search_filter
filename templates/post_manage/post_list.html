@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+<br>
+<div class="container">
+  <div class="col-md-6">
+    <h1>Filter Data</h1>
+    <br>
+    <form class="" action="/post/filter/" method="post">
+      {% csrf_token %}
+      <!-- <div class="input-group mb-3">
+        <select class="form-select" id="inputGroupSelect02" name="age">
+          <option selected></option>
+          {% for i in age %}
+          <option value="{{i}}">{{i}}</option>
+          {% endfor %}
+        </select>
+        <label class="input-group-text" for="inputGroupSelect02">Age</label>
+      </div> -->
+      <div class="form-group">
+        <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+      </div>
+      <br>
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="student">
+        <label class="form-check-label" for="exampleCheck1">Student</label>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Age From</label>
+        <input type="number" class="form-control" name="age_from" id="exampleFormControlInput1">
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Age to</label>
+        <input type="number" class="form-control" name="age_to" id="exampleFormControlInput1">
+      </div>
+      <div class="form-group">
+        {{dateform | crispy}}
+      </div>
+      <button type="submit" name="" class="btn btn-primary">Filter Posts</button>
+    </form>
+  </div>
+  <br>
+  <hr>
+  <h3>Post List: </h3>
+
+  {% for p in posts %}
+    <h5><a href="{% url 'post:post_details' pk=p.id slug=p.slug %}">{{p.title}}</a></h5>
+    <p>{{p.details}}</p>
+  {% endfor %}
+</div>
+
+
+{% endblock %}

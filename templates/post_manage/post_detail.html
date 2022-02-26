@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+{% block body_block %}
+
+<h3>Post details: </h3>
+
+<h4>{{object.title}}</h4>
+<span>Create by <i><b>{{object.user.username}}</b></i> age:{{object.age}} | at: {{object.created_at|naturaltime}}</span>
+<br><br>
+<p>{{object.details}}</p>
+<br>
+<span><b>{% if object.student %} Student {% else %} Employee / Other {% endif %}</b></span>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<span><b>{{object.created_at}}</b></span>
+
+{% endblock %}
